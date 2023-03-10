@@ -1,1 +1,1 @@
-# Consumer-Domain-SQL
+# Consumer Goods Ad Hoc Insights-SQL
