@@ -1,6 +1,6 @@
 use gdb023;
 
--- 1. Providethelistofmarketsinwhichcustomer"AtliqExclusive"operatesits business in the APAC region.
+-- 1. Provide the list of markets in which customer "Atliq Exclusive" operates its business in the APAC region.
 
 select distinct(market)
 from dim_customer
@@ -10,7 +10,7 @@ order by 1;
 -- 2. What is the percentage of unique product increase in 2021 vs. 2020? The final output contains these fields,
 -- unique_products_2020, unique_products_2021, percentage_chg
 
-with table1 as (
+WITH table1 as (
 select fiscal_year, count(distinct product_code) As unique_products
 from fact_sales_monthly
 group by fiscal_year)
@@ -30,7 +30,7 @@ order by count(distinct product_code) desc;
 
 -- 4. Follow-up: Which segment had the most increase in unique products in 2021 vs 2020?
 
-with CTE as (
+WITH CTE as (
 select count(distinct s.product_code) as product_count, s.fiscal_year, p.segment
 from fact_sales_monthly as s
 join dim_product as p ON s.product_code = p.product_code
@@ -135,7 +135,7 @@ from CTE ;
 
 -- 10. Get the Top 3 products in each division that have a high total_sold_quantity in the fiscal_year 2021?
 
-with CTE AS (
+WITH CTE AS (
 select p.division, s.product_code, p.product, sum(s.sold_quantity) as total_sold_quatity
 from fact_sales_monthly s
 left join dim_product p on s.product_code = p.product_code
